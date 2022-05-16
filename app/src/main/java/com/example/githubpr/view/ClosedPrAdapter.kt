@@ -1,14 +1,16 @@
 package com.example.githubpr.view
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.githubpr.databinding.ItemClosedPrBinding
 import com.example.githubpr.model.ClosedPR
 
-class ClosedPrAdapter(private var list: List<ClosedPR>): RecyclerView.Adapter<ClosedPrAdapter.ClosedPrViewHolder>() {
+class ClosedPrAdapter(private var list: List<ClosedPR>, private val context: Context): RecyclerView.Adapter<ClosedPrAdapter.ClosedPrViewHolder>() {
 
     @SuppressLint("NotifyDataSetChanged")
     fun setList(closedPrList: List<ClosedPR>) {
@@ -25,7 +27,7 @@ class ClosedPrAdapter(private var list: List<ClosedPR>): RecyclerView.Adapter<Cl
     }
 
     override fun onBindViewHolder(holder: ClosedPrViewHolder, position: Int) {
-        holder.setValues(list[position])
+        holder.setValues(list[position], context)
     }
 
     override fun getItemCount(): Int {
@@ -33,11 +35,17 @@ class ClosedPrAdapter(private var list: List<ClosedPR>): RecyclerView.Adapter<Cl
     }
 
     class ClosedPrViewHolder(private val binding: ItemClosedPrBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun setValues(closedPr: ClosedPR) {
+        fun setValues(closedPr: ClosedPR, context: Context) {
             binding.apply {
                 titleTv.text = closedPr.title
                 createdDateTv.text = closedPr.createdAt
                 closedDateTv.text = closedPr.closedAt
+                nameTv.text = closedPr.user.login
+                Glide.with(context)
+                    .load(
+                        closedPr.user.avatarUrl
+                    )
+                    .into(binding.profileIv)
             }
         }
     }

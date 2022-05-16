@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: MainViewModel
     private val closedPrAdapter: ClosedPrAdapter by lazy {
-        ClosedPrAdapter(emptyList())
+        ClosedPrAdapter(emptyList(), this)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,14 +40,6 @@ class MainActivity : AppCompatActivity() {
     private fun setObservers() {
         viewModel.closedPRLiveData.observe(this) { closedPrList ->
             closedPrAdapter.setList(closedPrList)
-            if (closedPrList.isNotEmpty()) {
-                binding.nameTv.text = closedPrList[0].user.login
-                Glide.with(this)
-                    .load(
-                        closedPrList[0].user.avatarUrl
-                    )
-                    .into(binding.profileIv)
-            }
         }
     }
 }
