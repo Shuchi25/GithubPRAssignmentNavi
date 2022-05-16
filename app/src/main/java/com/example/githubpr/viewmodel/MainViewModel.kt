@@ -22,10 +22,10 @@ class MainViewModel: ViewModel() {
             when(val result = githubRepository.getClosedPRs(username, repoName)) {
                 is NetworkCallResult.Success -> {
                     closedPRMutableLiveData.value = result.value
-                    Log.d("TAG", result.value.toString())
+                    Log.d("TAG success", result.value.toString())
                 }
                 is NetworkCallResult.Error -> {
-
+                    Log.d("TAG", "error")
                 }
             }
             Log.d("TAG", "getClosedPRs called")

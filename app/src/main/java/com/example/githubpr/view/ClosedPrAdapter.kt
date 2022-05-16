@@ -1,6 +1,7 @@
 package com.example.githubpr.view
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -10,8 +11,8 @@ import com.example.githubpr.model.ClosedPR
 class ClosedPrAdapter(private var list: List<ClosedPR>): RecyclerView.Adapter<ClosedPrAdapter.ClosedPrViewHolder>() {
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setList(peopleList: List<ClosedPR>) {
-        list = peopleList
+    fun setList(closedPrList: List<ClosedPR>) {
+        list = closedPrList
         notifyDataSetChanged()
     }
 

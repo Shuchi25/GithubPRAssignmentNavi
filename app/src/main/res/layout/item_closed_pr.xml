@@ -8,24 +8,47 @@
         android:id="@+id/title_tv"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="30dp"
         android:layout_marginVertical="10dp"
-        android:layout_width="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:ellipsize="end"
+        app:layout_constraintEnd_toStartOf="@id/guideline1"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.4"/>
 
     <TextView
         android:id="@+id/created_date_tv"
-        android:layout_marginHorizontal="30dp"
-        app:layout_constraintRight_toLeftOf="@id/title_tv"
+        android:ellipsize="end"
+        app:layout_constraintStart_toEndOf="@id/guideline1"
+        app:layout_constraintEnd_toStartOf="@id/guideline2"
+        android:layout_marginHorizontal="10dp"
         app:layout_constraintTop_toTopOf="@id/title_tv"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.7"/>
 
     <TextView
         android:id="@+id/closed_date_tv"
-        app:layout_constraintRight_toLeftOf="@id/created_date_tv"
-        app:layout_constraintStart_toEndOf="parent"
+        android:ellipsize="end"
+        app:layout_constraintStart_toEndOf="@id/guideline2"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/created_date_tv"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
