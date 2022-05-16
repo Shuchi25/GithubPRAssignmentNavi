@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setObservers() {
-        viewModel.peopleLiveData.observe(this) {
+        viewModel.closedPRLiveData.observe(this) {
             peopleAdapter.setList(it)
         }
     }

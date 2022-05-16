@@ -12,8 +12,8 @@ import com.example.githubpr.network.repository.GithubRepositoryImpl
 import kotlinx.coroutines.launch
 
 class MainViewModel: ViewModel() {
-    private var peopleMutableLiveData = MutableLiveData<List<ClosedPR>>()
-    val peopleLiveData: LiveData<List<ClosedPR>> = peopleMutableLiveData
+    private var closedPRMutableLiveData = MutableLiveData<List<ClosedPR>>()
+    val closedPRLiveData: LiveData<List<ClosedPR>> = closedPRMutableLiveData
 
     private val githubRepository: GithubRepository = GithubRepositoryImpl()
 
@@ -21,7 +21,7 @@ class MainViewModel: ViewModel() {
         viewModelScope.launch {
             when(val result = githubRepository.getClosedPRs(username, repoName)) {
                 is NetworkCallResult.Success -> {
-                    peopleMutableLiveData.value = result.value
+                    closedPRMutableLiveData.value = result.value
                     Log.d("TAG", result.value.toString())
                 }
                 is NetworkCallResult.Error -> {
