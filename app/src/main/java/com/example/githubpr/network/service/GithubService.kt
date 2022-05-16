@@ -7,7 +7,7 @@ import retrofit2.http.Query
 
 interface GithubService {
 
-    @GET("repos/{Shuchi25}/{GithubPRAssignmentNavi}/pulls")
+    @GET("repos/{username}/{repoName}/pulls")
     suspend fun getGithubPRs(
         @Path("username") username: String,
         @Path("repoName") repoName: String,

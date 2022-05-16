@@ -12,7 +12,7 @@ class GithubRepositoryImpl: GithubRepository {
     private val apiService = NetworkCallConnector.getApiService("https://api.github.com/")
 
     override suspend fun getClosedPRs(user: String, repoName: String): NetworkCallResult<List<ClosedPR>> {
-        return NetworkCallConnector.callWebService(Dispatchers.Default) {
+        return NetworkCallConnector.callWebService(Dispatchers.IO) {
             apiService.getGithubPRs(user, repoName, "closed")
         }
     }

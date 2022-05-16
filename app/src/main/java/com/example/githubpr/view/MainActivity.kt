@@ -1,9 +1,10 @@
 package com.example.githubpr.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.example.githubpr.R
 import com.example.githubpr.databinding.ActivityMainBinding
 import com.example.githubpr.viewmodel.MainViewModel
@@ -12,19 +13,19 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: MainViewModel
-    private val peopleAdapter: ClosedPrAdapter by lazy {
-        ClosedPrAdapter(emptyList())
+    private val closedPrAdapter: ClosedPrAdapter by lazy {
+        ClosedPrAdapter(emptyList(), this)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(R.layout.activity_main)
+        setContentView(binding.root)
 
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
 
         binding.recyclerView.apply {
-            adapter = peopleAdapter
+            adapter = closedPrAdapter
             layoutManager = LinearLayoutManager(this@MainActivity)
         }
 
@@ -37,8 +38,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setObservers() {
-        viewModel.peopleLiveData.observe(this) {
-            peopleAdapter.setList(it)
+        viewModel.closedPRLiveData.observe(this) { closedPrList ->
+            closedPrAdapter.setList(closedPrList)
         }
     }
 }
